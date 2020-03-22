@@ -9,8 +9,8 @@ pipeline {
         sh '''
                     echo "PATH = ${PATH}"
                     echo "M2_HOME = ${M2_HOME}"
-                    docker images
-                    docker ps
+                    sudo docker images
+                    sudo docker ps
             ''' 
       }
     }
