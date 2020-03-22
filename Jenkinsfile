@@ -14,6 +14,15 @@ pipeline {
             ''' 
       }
     }
+
+    stage ('Check-Git-Secrets') {
+      steps {
+        sh 'rm trufflehog || true'
+        sh 'sudo docker run gesellix/trufflehog --json https://github.com/frovai/devsecops.git > trufflehog'
+        sh 'cat trufflehog'
+      }
+    }
+
     stage ('build') {
       steps {
         sh '''
@@ -25,14 +34,6 @@ pipeline {
             ''' 
       }
     }
-    
-    //stage ('Check-Git-Secrets') {
-    //  steps {
-    //    sh 'rm trufflehog || true'
-    //    sh 'docker run gesellix/trufflehog --json https://github.com/cehkunal/webapp.git > trufflehog'
-    //    sh 'cat trufflehog'
-    //  }
-    //}
     
     //stage ('Source Composition Analysis') {
     //  steps {
