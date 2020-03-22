@@ -19,7 +19,7 @@ pipeline {
         sh '''
             mvn clean package
             sudo docker build -t webapp:1 -f Dockerfile-tomcat . 
-            sudo docker run -di webapp:1
+            sudo docker run --name=webapp -p 8080:8080 -di webapp:1 
             ''' 
       }
     }
