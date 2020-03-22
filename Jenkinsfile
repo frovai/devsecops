@@ -18,6 +18,8 @@ pipeline {
       steps {
         sh '''
             mvn clean package
+            sudo docker build -f Dockerfile-tomcat -t webapp:1 
+            sudo docker run -di webapp:1
             ''' 
       }
     }
